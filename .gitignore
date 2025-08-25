@@ -1,0 +1,30 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment / virtualenv
+venv/
+env/
+.venv/
+
+# Django migrations (opsional, bisa dicommit jika ingin versi kontrol)
+*/migrations/*.py
+!*/migrations/__init__.py
+
+# Database
+*.sqlite3
+
+# Logs
+*.log
+
+# Pytest cache
+.pytest_cache/
+
+# Coverage
+htmlcov/
+.coverage
+
+# VSCode / IDE
+.vscode/
+.idea/
