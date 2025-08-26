@@ -10,6 +10,7 @@ class CommentSerializer(serializers.ModelSerializer):
         fields = ['id', 'post', 'author', 'text', 'created_at']
 
 class PostSerializer(serializers.ModelSerializer):
+    author = serializers.CharField(source='author.username', read_only=True)
     # Nested Serializer
     comments = CommentSerializer(many=True, read_only=True)
 
@@ -18,7 +19,7 @@ class PostSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Post
-        fields = ['id', 'title', 'content', 'created_at', 'comments', 'comment_count']
+        fields = ['id', 'title', 'content', 'author', 'created_at', 'comments', 'comment_count']
 
     # MethodField
     def get_comment_count(self, obj):

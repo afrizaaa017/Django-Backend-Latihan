@@ -31,3 +31,10 @@ class PostStatsView(APIView):
             "avg_comments_per_post": avg_comments
         }
         return Response(PostStatsSerializer(data).data)
+
+class UserPostListView(generics.ListAPIView):
+    serializer_class = PostSerializer
+
+    def get_queryset(self):
+        username = self.kwargs['username']
+        return Post.objects.filter(author__username=username).order_by('-created_at')
