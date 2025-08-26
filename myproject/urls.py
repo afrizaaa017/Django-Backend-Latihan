@@ -21,7 +21,7 @@ from blogs.views import PostStatsView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/blogs/', include('blogs.urls')),
-    path('api/', include('books.urls')),
+    path('api/books/', include('books.urls')),
 
     # Aggregated API data
     path('posts/stats/', PostStatsView.as_view(), name='post-stats'),
