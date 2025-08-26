@@ -16,10 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from blogs.views import PostStatsView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/blogs/', include('blogs.urls')),
     path('api/', include('books.urls')),
+
+    # Aggregated API data
+    path('posts/stats/', PostStatsView.as_view(), name='post-stats'),
 ]
 
