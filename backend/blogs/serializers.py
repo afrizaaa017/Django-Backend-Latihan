@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Post, Comment
+from django.contrib.auth.models import User
 
 class CommentSerializer(serializers.ModelSerializer):
     # Relations Serializer 
@@ -10,7 +11,9 @@ class CommentSerializer(serializers.ModelSerializer):
         fields = ['id', 'post', 'author', 'text', 'created_at']
 
 class PostSerializer(serializers.ModelSerializer):
-    author = serializers.CharField(source='author.username', read_only=True)
+    # author = serializers.CharField(source='author.username', read_only=True)
+    author = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
+
     # Nested Serializer
     comments = CommentSerializer(many=True, read_only=True)
 
@@ -37,3 +40,8 @@ class PostStatsSerializer(serializers.Serializer):
     total_posts = serializers.IntegerField()
     total_comments = serializers.IntegerField()
     avg_comments_per_post = serializers.FloatField()
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'username']

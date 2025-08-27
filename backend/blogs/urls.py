@@ -1,5 +1,5 @@
 from rest_framework.routers import DefaultRouter
-from .views import PostViewSet, CommentViewSet, PostDetailViewSet, PostStatsView, UserPostListView
+from .views import PostViewSet, CommentViewSet, PostDetailViewSet, PostStatsView, UserPostListView, UserListView
 from django.urls import path, include
 
 router = DefaultRouter()
@@ -16,4 +16,5 @@ router.register(r'comments', CommentViewSet, basename='comment')
 urlpatterns = [
     path('', include(router.urls)),
     path('<str:username>/', UserPostListView.as_view(), name='user-posts'),
+    path('users/list', UserListView.as_view(), name='user-list'),
 ]

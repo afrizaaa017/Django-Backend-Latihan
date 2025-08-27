@@ -1,10 +1,11 @@
 from rest_framework import viewsets
 from .models import Post, Comment
-from .serializers import PostSerializer, CommentSerializer, PostDetailSerializer, PostStatsSerializer
+from .serializers import PostSerializer, CommentSerializer, PostDetailSerializer, PostStatsSerializer, UserSerializer
 from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.db.models import Count, Avg
+from django.contrib.auth.models import User
 
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all().order_by('-created_at')
@@ -38,3 +39,7 @@ class UserPostListView(generics.ListAPIView):
     def get_queryset(self):
         username = self.kwargs['username']
         return Post.objects.filter(author__username=username).order_by('-created_at')
+
+class UserListView(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer

@@ -8,6 +8,26 @@ venv/
 env/
 .venv/
 
+# Env files
+.env
+.env.local
+.env.*.local
+
+# MacOS
+.DS_Store
+
+# Lock files (optional, uncomment if you don't want to commit)
+# package-lock.json
+# yarn.lock
+
+# Database
+db.sqlite3
+
+# Frontend build and dependencies
+frontend/node_modules/
+frontend/.next/
+
+
 # Django migrations (opsional, bisa dicommit jika ingin versi kontrol)
 */migrations/*.py
 !*/migrations/__init__.py
